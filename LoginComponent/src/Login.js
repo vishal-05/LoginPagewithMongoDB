@@ -9,6 +9,8 @@ import {
   DialogActions,
   Dialog,
   DialogContent,
+  Container,
+  Box
 } from "@mui/material";
 import { VisibilityOff, Visibility } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
@@ -26,7 +28,11 @@ function Login() {
   const [dialogMessage, setDialogMessage] = useState("");
 
   const togglePasswordVisibility = () => {
-    setShowPassword(true);
+    if(showPassword){
+      setShowPassword(false)
+    }else {
+      setShowPassword(true)
+    }
   };
 
   const redirectToSignUpPage = () => {
@@ -64,6 +70,16 @@ function Login() {
   }
 
   return (
+    <Container sx={{ display: "flex", justifyContent: "center" }}>
+      <Box
+        sx={{
+          maxWidth: "400px",
+          border: "1px solid #ddd",
+          borderRadius: "10px",
+          padding: "25px",
+          marginTop: "25px",
+        }}
+      >
     <form onSubmit={LoginUser}>
       {errorMessage && (
         <Typography
@@ -207,6 +223,8 @@ function Login() {
         </DialogActions>
       </Dialog>
     </form>
+    </Box>
+    </Container>
   );
 }
 
